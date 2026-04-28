@@ -1,5 +1,5 @@
 -- ============================================================
--- 07_ranking_analysis.sql
+-- Ranking_analysis.sql
 -- ============================================================
 --
 -- PURPOSE:
@@ -22,7 +22,7 @@ SELECT TOP 10
     p.product_name,
     SUM(f.sales_amount) AS total_revenue
 FROM gold.fact_sales f
-JOIN gold.dim_products p 
+LEFT JOIN gold.dim_products p 
 ON f.product_key = p.product_key
 GROUP BY p.product_name
 ORDER BY total_revenue DESC;
@@ -37,7 +37,7 @@ SELECT TOP 5
 FROM gold.fact_sales f
 JOIN gold.dim_products p 
 ON f.product_key = p.product_key
-GROUP BY p.product_name
+LEFT GROUP BY p.product_name
 ORDER BY total_revenue ASC;
 
 
@@ -49,7 +49,7 @@ SELECT TOP 10
     SUM(f.sales_amount) AS total_revenue,
     COUNT(DISTINCT f.order_number) AS total_orders
 FROM gold.fact_sales f
-JOIN gold.dim_customers c 
+LEFT JOIN gold.dim_customers c 
 ON f.customer_key = c.customer_key
 GROUP BY c.first_name, c.last_name
 ORDER BY total_revenue DESC;
@@ -62,7 +62,7 @@ SELECT TOP 5
     c.country,
     COUNT(DISTINCT f.order_number) AS total_orders
 FROM gold.fact_sales f
-JOIN gold.dim_customers c 
+LEFT JOIN gold.dim_customers c 
 ON f.customer_key = c.customer_key
 GROUP BY c.country
 ORDER BY total_orders DESC;
