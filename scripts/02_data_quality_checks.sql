@@ -6,12 +6,6 @@
 --   Run this before doing any real analysis. 
 --   The goal is to catch obvious data problems early — missing values in key columns, duplicate order records, and sales amounts that shouldn't exist (zero or negative).
 --   If anything looks off here, the analysis numbers downstream won't be reliable.
---
--- WARNING:
---   This script only flags problems — it does not fix them.
---   If duplicates or NULLs show up, investigate the source data before proceeding.
---   Do not just ignore the results and move on to analysis.
---   Also note that COUNT(column_name) skips NULLs by design — that's intentional here, not a bug.
 -- ============================================================
 
 
