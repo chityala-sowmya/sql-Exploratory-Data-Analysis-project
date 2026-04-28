@@ -20,7 +20,7 @@
 -- See how many rows are actually complete on the columns that matter
 SELECT
     COUNT(*) AS total_rows,
-    COUNT(customer_id) AS has_customer,
+    COUNT(customer_key) AS has_customer,
     COUNT(order_date) AS has_date,
     COUNT(sales_amount) AS has_amount
 FROM gold.fact_sales;
