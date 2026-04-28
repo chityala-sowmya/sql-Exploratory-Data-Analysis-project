@@ -1,18 +1,16 @@
--- ============================================================
--- 06_magnitude_analysis.sql
--- ============================================================
---
--- PURPOSE:
---   Compare revenue and volume across different dimensions to find where the business is concentrated. 
---   Covers country, product category, subcategory, and average price per unit.
---   This is where you start answering the
---   question: "where is the money actually coming from?"
---
--- WARNING:
---   All queries here use INNER JOIN, which means any sales records with no matching customer or product will besilently excluded.
---   If the data quality checks from script 02 flagged NULLs on customer_key or product_key,those rows will drop out of these results without warning.
---   Also, the avg_price_per_unit calculation uses NULLIF on quantity — if a category has only zero-quantity rows;', it will return NULL here.
--- ============================================================
+/*
+===============================================================================
+Magnitude Analysis
+===============================================================================
+Purpose:
+    - To quantify data and group results by specific dimensions.
+    - For understanding data distribution across categories.
+
+SQL Functions Used:
+    - Aggregate Functions: SUM(), COUNT(), AVG()
+    - GROUP BY, ORDER BY
+===============================================================================
+*/
 
 
 -- ── Revenue by Country ───────────────────────────────────────
@@ -24,7 +22,7 @@ SELECT
     COUNT(DISTINCT f.order_number) AS total_orders,
     COUNT(DISTINCT f.customer_key) AS unique_customers
 FROM gold.fact_sales f
-JOIN gold.dim_customers c 
+LEFT JOIN gold.dim_customers c 
 ON f.customer_key = c.customer_key
 GROUP BY c.country
 ORDER BY total_revenue DESC;
@@ -39,7 +37,7 @@ SELECT
     SUM(f.quantity) AS total_units,
     COUNT(f.order_number) AS total_orders
 FROM gold.fact_sales f
-JOIN gold.dim_products p 
+LEFT JOIN gold.dim_products p 
 ON f.product_key = p.product_key
 GROUP BY p.category
 ORDER BY total_revenue DESC;
@@ -54,7 +52,7 @@ SELECT
     SUM(f.sales_amount) AS total_revenue,
     SUM(f.quantity) AS total_units
 FROM gold.fact_sales f
-JOIN gold.dim_products p 
+LEFT JOIN gold.dim_products p 
 ON f.product_key = p.product_key
 GROUP BY p.category, p.subcategory
 ORDER BY total_revenue DESC;
@@ -69,7 +67,7 @@ SELECT
     SUM(f.quantity) AS total_units,
     ROUND(SUM(f.sales_amount) * 1.0/ NULLIF(SUM(f.quantity), 0), 2) AS avg_price_per_unit
 FROM gold.fact_sales f
-JOIN gold.dim_products p 
+LEFT JOIN gold.dim_products p 
 ON f.product_key = p.product_key
 GROUP BY p.category
 ORDER BY avg_price_per_unit DESC;
