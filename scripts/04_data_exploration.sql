@@ -1,20 +1,16 @@
--- ============================================================
--- 04_date_exploration.sql
--- ============================================================
---
--- PURPOSE:
---   Understand the time boundaries of the dataset before reporting any trends.
---   Checks how many years the data covers, how revenue and orders break down year by year,and how orders are distributed month by month.
---   Knowing this prevents mistakes like treating an incomplete yea as a real decline or missing a seasonal pattern entirely.
---
--- WARNING:
---   The most recent year in the data may be incomplete —
---   for example, if data was extracted mid-year, December numbers for that year don't exist yet. 
---   Comparing an incomplete year to a full one will make it look like a drop-off when it isn't. 
---   Always check the MAX(order_date) from the first query before drawing conclusions from the yearly or monthly breakdowns.
---   For the age calculation, rows where birthdate is NULL are excluded via the WHERE clause.
---   If a large share of customers have no birthdate, the age stats will not represent the full customer base — check the NULL count from script 02 before reading these numbers.
--- ============================================================
+/*
+===============================================================================
+Date Exploration 
+===============================================================================
+Purpose:
+    - To determine the temporal boundaries of key data points.
+    - To understand the range of historical data.
+
+SQL Functions Used:
+    - MIN(), MAX(), DATEDIFF()
+===============================================================================
+*/
+
 
 
 -- ── Date Range ───────────────────────────────────────────────
