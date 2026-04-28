@@ -207,4 +207,3 @@ This project reflects my ability to:
 
 I am currently building my portfolio with real-world style projects covering SQL, Tableau, data analysis, and reporting, with the goal of transitioning into a full-time data analyst role.
 
---
