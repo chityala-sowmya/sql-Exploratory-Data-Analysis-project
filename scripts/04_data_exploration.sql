@@ -12,8 +12,7 @@
 --   for example, if data was extracted mid-year, December numbers for that year don't exist yet. 
 --   Comparing an incomplete year to a full one will make it look like a drop-off when it isn't. 
 --   Always check the MAX(order_date) from the first query before drawing conclusions from the yearly or monthly breakdowns.
---   The avg_order_value calculation uses NULLIF to avoid a divide-by-zero error.
---   If there are somehow zero orders in the table, it returns NULL instead of crashing that is intentional. For the age calculation, rows where birthdate is NULL are excluded via the WHERE clause.
+--   For the age calculation, rows where birthdate is NULL are excluded via the WHERE clause.
 --   If a large share of customers have no birthdate, the age stats will not represent the full customer base — check the NULL count from script 02 before reading these numbers.
 -- ============================================================
 
