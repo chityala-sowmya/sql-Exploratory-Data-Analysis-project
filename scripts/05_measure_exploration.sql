@@ -1,15 +1,16 @@
--- ============================================================
--- 05_measures_exploration.sql
--- ============================================================
---
--- PURPOSE:
---   Calculate the core business KPIs in one place — total revenue, total orders, units sold, unique customers,unique products, and average order value.
---   Also pulls basic customer age stats. This is the "big picture" snapshot that gives context for everything else in the analysis.
---
--- WARNING:
---   The avg_order_value calculation uses NULLIF to avoid adivide-by-zero error. 
---   If there are somehow zero orders in the table, it returns NULL instead of crashing that is intentional.
--- ============================================================
+/*
+===============================================================================
+Measures Exploration (Key Metrics)
+===============================================================================
+Purpose:
+    - To calculate aggregated metrics (e.g., totals, averages) for quick insights.
+    - To identify overall trends or spot anomalies.
+
+SQL Functions Used:
+    - COUNT(), SUM(), NULLIF(),ROUND()
+===============================================================================
+*/
+
 
 
 -- ── Core KPIs ────────────────────────────────────────────────
