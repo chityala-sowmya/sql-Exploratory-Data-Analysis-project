@@ -1,17 +1,15 @@
--- ============================================================
--- 03_dimension_exploration.sql
--- ============================================================
---
--- PURPOSE:
---   Profile the categorical (dimension) columns to understand what unique values exist and how the data is distributed.
---   Covers customers by country and gender, products by category and subcategory, and — importantly — a check for any products in the catalog that have never been sold.
---   This gives a full picture of the data before any numeric analysis starts.
---
--- WARNING:
---   The "products never sold" query uses a LEFT JOIN. 
---   Make sure the join key (product_id) exists and is named the same in both tables before running it — a key mismatch will silently return wrong results, not an error.
---   Also,NULL birthdates or blank country values in dim_customers will show up in these counts — worth noting if the numbers look unexpected.
--- ============================================================
+/*
+===============================================================================
+Dimensions Exploration
+===============================================================================
+Purpose:
+    - To explore the structure of dimension tables.
+	
+SQL Functions Used:
+    - DISTINCT
+    - ORDER BY
+===============================================================================
+*/
 
 
 -- ── Customers ────────────────────────────────────────────────
