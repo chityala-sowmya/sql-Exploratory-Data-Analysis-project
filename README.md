@@ -1,11 +1,11 @@
-# SQL-Exploratory-Data-Analysis-project
+# SQL Exploratory Data Analysis — Retail Sales
 > An end-to-end EDA project in SQL that explores a retail sales database to understand its structure, data quality, and key business patterns.
 
 ---
 
 ## Executive Summary
 
-This project is a structured SQL-based exploratory data analysis on a retail sales data warehouse. Before any reporting or advanced analysis can happen, someone has to do the groundwork — understanding what data exists, whether it is clean, and what patterns it contains.
+This project is a structured SQL-based exploratory data analysis on a retail sales data warehouse. Before any reporting or advanced analysis can happen, someone has to do the groundwork — understand what data exists, whether it is clean, and what patterns it contains.
 
 That is exactly what this project does. Working through seven structured phases, the analysis covers database exploration, data quality validation, dimension exploration, date exploration, measure aggregation, magnitude comparison, and ranking analysis.
 
@@ -23,14 +23,13 @@ Imagine walking into a retail analytics role on your first week. There is a data
 - Who are the top customers? Which products sit at the bottom?
 - Are there products in the catalog that have never actually been sold?
 
-These are the questions this EDA answers.
+This project focuses on answering these foundational questions.
 
 ---
 
 ## Dataset Description
 
-The data comes from a fictional retail company and is stored in a **star schema** data warehouse. It was already cleaned and loaded into the Gold layer of a Medallion Architecture (Bronze → Silver → Gold). All CSV files are located in the `/datasets` folder.
-
+The data comes from a fictional retail company and is stored in a **star schema** data warehouse. It was already cleaned and loaded into the Gold layer of a Medallion Architecture (Bronze → Silver → Gold). All dataset files are available in the `/datasets` folder.
 | Table | What it contains |
 |---|---|
 | `gold.fact_sales` | One row per transaction — order number, dates, product, customer, quantity, and revenue |
@@ -53,7 +52,7 @@ The first step is just orientation. What tables exist? What are the column names
 
 ### Phase 2 — Data Quality Checks *(Added beyond tutorial)*
 
-Before trusting any number, it is worth checking whether the data has obvious problems. This phase looks for NULLs in columns that should always have values, duplicate order records, and any sales amounts that don't make sense.
+Before trusting any number, it is worth checking whether the data has obvious problems. This phase looks for NULLs in columns that should always have values, duplicate order records, and any sales amounts that appear invalid (zero or negative).
 
 ---
 
@@ -88,21 +87,19 @@ The final phase ranks products and customers by revenue, and adds a ranking by o
 ---
 
 ## Key Insights
-
-*(Replace the placeholders below with your actual query results before publishing)*
-
-- Total revenue across the dataset was approximately **$29.3 million**.
-- **US and Australia** accounted for more than 60% of total revenue — the business is heavily concentrated in two markets.
-- **Bikes** dominated category-level revenue. Accessories and Clothing had far more transactions but much lower revenue per order, meaning they are volume-driven rather than value-driven.
-- The subcategory breakdown revealed significant variation even within the Bikes category — not all subcategories contribute equally.
-- The **top 10 customers** were responsible for a disproportionate share of total revenue — a concentration that carries business risk.
+- Total revenue across the dataset was approximately **$29.3 million**, indicating a strong overall business scale.
+- Revenue is highly concentrated geographically, with the **US and Australia contributing over 60% of total revenue**, highlighting a dependency on a limited number of markets.
+- At the category level, **Bikes are the primary revenue driver**, significantly outperforming other categories. In contrast, Accessories and Clothing generate higher transaction volume but contribute less revenue per order, indicating a volume-driven value- driven split.
+- The subcategory breakdown reveals **significant variation within the Bikes category**, showing that not all subcategories contribute equally to revenue.
+- A number of products in the catalog have **zero recorded sales**, indicating inefficiencies in **product assortment** that could be addressed through removal, repricing, or improved promotion.
+- The **top 10 customers** account for a disproportionate share of total revenue, highlighting **customer concentration risk**.
 
 ---
 
 ## Recommendations
 
 **1. Do not ignore the geographic concentration.**
-Over 60% of revenue from two countries means the business is exposed if either market weakens. There are clearly other countries with existing customers — the data shows them — so the question becomes: why aren't they buying more?
+Over 60% of revenue from two countries means the business is exposed if either market weakens. There are clearly other countries with existing customers — the data shows them — so the next step is to understand why these markets generate less revenue.
 
 **2. Investigate products that have never sold.**
 There is no good reason to carry catalog items with zero sales history. They either need to be marketed, repriced, or removed. This is a clean, specific finding that a product team could act on directly.
@@ -211,4 +208,4 @@ This project reflects my ability to:
 * Validate data quality before drawing conclusions
 * Translate raw data into meaningful business insights
 
-I am currently building my portfolio with real-world style projects covering SQL, Tableau, data analysis, and reporting, with the goal of transitioning into a full-time data analyst role.
+I am currently building my portfolio with real-world projects covering SQL, Tableau, data analysis, and reporting, with the goal of transitioning into a full-time data analyst role.
