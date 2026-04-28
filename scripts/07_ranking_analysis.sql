@@ -1,18 +1,16 @@
--- ============================================================
--- Ranking_analysis.sql
--- ============================================================
---
--- PURPOSE:
---   Find the best and worst performers across products and customers.
---   Ranks by revenue to identify who is driving the most value, and flips to order count for countries to check whether volume rankings differ from revenue rankings.
---   The bottom-5 products query is just as useful as the top-10 — underperformers are worth flagging too.
---
--- WARNING:
---   TOP N with ORDER BY gives different results depending on ties. 
---   If two products have the exact same revenue, SQL Server will arbitrarily pick one to include and leave the other out — there is no guarantee which one you get.
---   For the customer ranking, names are concatenated with first_name + ' ' + last_name — if either column has a NULL value, the full name will come back as NULL.
---   Check the dim_customers table for NULL names before using this output anywhere visible.
--- ============================================================
+/*
+===============================================================================
+Ranking Analysis
+===============================================================================
+Purpose:
+    - To rank items (e.g., products, customers) based on performance or other metrics.
+    - To identify top performers or laggards.
+
+SQL Functions Used:
+    - Window Ranking Functions: TOP
+    - Clauses: GROUP BY, ORDER BY
+===============================================================================
+*/
 
 
 -- ── Top 10 Products by Revenue ───────────────────────────────
