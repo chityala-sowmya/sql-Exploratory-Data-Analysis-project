@@ -158,6 +158,7 @@ Those topics are intentionally kept out of this project — the EDA is meant to 
 1. Clone this repository
 2. Load the CSV files from `/datasets` into your SQL Server instance
 3. Run scripts in `/scripts` in order:
+   - `00_init_database.sql`
    - `01_database_exploration.sql`
    - `02_data_quality_checks.sql`
    - `03_dimension_exploration.sql`
@@ -165,7 +166,7 @@ Those topics are intentionally kept out of this project — the EDA is meant to 
    - `05_measures_exploration.sql`
    - `06_magnitude_analysis.sql`
    - `07_ranking_analysis.sql`
-4. Read the comments in each file — they explain what each query is trying to find out
+5. Read the comments in each file — they explain what each query is trying to find out
 
 ---
 
@@ -175,6 +176,7 @@ Those topics are intentionally kept out of this project — the EDA is meant to 
 sql-eda-project/
 ├── datasets/
 ├── scripts/
+│   ├── 00_init_database.sql
 │   ├── 01_database_exploration.sql
 │   ├── 02_data_quality_checks.sql
 │   ├── 03_dimension_exploration.sql
