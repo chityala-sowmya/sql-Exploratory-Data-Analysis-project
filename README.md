@@ -3,7 +3,7 @@
 
 ---
 
-## Executive Summary
+## Executive Summary  
 
 This project is a structured SQL-based exploratory data analysis on a retail sales data warehouse. Before any reporting or advanced analysis can happen, someone has to do the groundwork — understand what data exists, whether it is clean, and what patterns it contains.
 
